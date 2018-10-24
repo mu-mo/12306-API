@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    api:
+      image: molscar/12306_api:1.0.0
+      volumes:
+        - /etc/localtime:/etc/localtime:ro
+      ports:
+        - "4321:3031"
+      environment:
+        - TZ=Asia/Shanghai
+      container_name: 12306_api
+      command: ["--ini", "uwsgi/uwsgi.ini"]
+      entrypoint: ["uwsgi"]
